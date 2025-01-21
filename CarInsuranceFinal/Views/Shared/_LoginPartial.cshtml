@@ -1,0 +1,27 @@
+﻿@using CarInsuranceFinal.Models.Schema
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+        var user = UserManager.GetUserAsync(User).Result;
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-solid fa-user"></i>  Welcome, @user.FirstName @user.LastName</a>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-white"><i class="fa-solid fa-door-open"></i>  Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register"><i class="fa-solid fa-user-plus"></i>  Register</a>
+    </li>
+    <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login  <i class="fa-solid fa-key"></i></a>
+    </li>
+}
+</ul>

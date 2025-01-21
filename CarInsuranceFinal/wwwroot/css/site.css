@@ -1,0 +1,386 @@
+html {
+    font-size: 14px;
+    height: 100%; /* Ensure full page height */
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: #f0f8ff; /* Light blueish-white */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+main {
+    flex-grow: 1; /* Ensure main content fills available space */
+}
+
+/* Focus styles for input and buttons */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Card styles */
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Link-item styles with hover effect */
+.link-item {
+    font-size: 1.1rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+
+    .link-item::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 2px;
+        background-color: #007bff;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        transform: scaleX(0);
+    }
+
+    .link-item:hover {
+        transform: scale(1.02);
+        color: #0056b3;
+    }
+
+        .link-item:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+/* Button styles for car and claim actions */
+.btn-add-car, .btn-add-claim {
+    background-color: #FFB703; /* Honey Yellow */
+    color: white; /* Text color */
+    transition: transform 0.1s, background-color 0.3s; /* Smooth transitions */
+}
+
+    .btn-add-car:hover, .btn-add-claim:hover {
+        background-color: #FB8500; /* Portokall */
+        transform: scale(1.02); /* Slightly grow the button */
+    }
+
+/* Navbar and Footer Background Color */
+.navbar {
+    background-color: #002244; /* Dark royal blue */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    z-index: 10;
+}
+
+    /* Hover effect for navbar and footer links */
+    .navbar-nav .nav-link, .footer a, .link-item {
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        margin: 0.1rem;
+    }
+
+        .navbar-nav .nav-link::after, .footer a::after, .link-item::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background-color: #FFB703; /* Honey Yellow */
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+            transform: scaleX(0);
+        }
+
+        .navbar-nav .nav-link:hover, .footer a:hover, .link-item:hover {
+            color: #FFB703; /* Change to honey yellow on hover */
+            transform: scale(1.02);
+        }
+
+            .navbar-nav .nav-link:hover::after, .footer a:hover::after, .link-item:hover::after {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+/* Container styles */
+.container {
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .card {
+        margin: 10px;
+    }
+
+    .container-fluid {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .footer {
+        font-size: 0.9rem;
+    }
+}
+/*index design*/
+/* Styling for Welcome Section */
+.welcome-section {
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background with less opacity */
+    border-radius: 10px; /* Optional rounded corners for a nicer look */
+    max-width: 600px; /* Make the section more condensed */
+    width: 100%; /* Ensure the section adapts to smaller screens */
+    margin: 20px;
+}
+
+    .welcome-section h1,
+    .welcome-section h2,
+    .welcome-section p {
+        font-size: 2.5rem;
+        color: white; /* White text for contrast */
+    }
+
+    .welcome-section .role-message {
+        font-size: 1.8rem;
+        margin-top: 10px;
+        color: #FFB703; /* Honey yellow */
+    }
+
+    .welcome-section .insurance-status {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #0056b3;
+    }
+
+.quick-links {
+    margin-top: 30px;
+}
+
+    .quick-links a {
+        margin-right: 15px;
+        margin: 5px;
+        background-color: #FFB703; /* Honey yellow color */
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px; /* Adjust button text size */
+    }
+        .quick-links a:hover {
+            background-color: #FB8500; /* Portokall color */
+        }
+
+/* Styling for Guest Section */
+.guest-section {
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background with less opacity */
+    border-radius: 10px;
+    max-width: 600px; /* Make the section more condensed */
+    width: 100%; /* Ensure the section adapts to smaller screens */
+    margin: 20px;
+}
+
+    .guest-section h1 {
+        font-size: 2.5rem;
+        color: #0056b3; /* Dark royal blue */
+    }
+    .guest-section p {
+    font-size: 1.1rem; /* Slightly smaller for a more condensed look */
+    color: white;
+}
+
+.reasons-to-choose {
+    margin-top: 30px;
+    text-align: center; /* Center the heading */
+}
+
+    .reasons-to-choose h2 {
+        font-size: 1.8rem;
+        color: #0056b3; /* Blue */
+        margin-bottom: 20px; /* Add space between heading and list */
+    }
+
+.benefits-list {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0; /* Remove padding */
+    margin: 0 auto; /* Center the list horizontally */
+    max-width: 270px; /* Optional: limit the width of the list */
+    color: white;
+}
+
+    .benefits-list li {
+        font-size: 1.1rem;
+        margin: 10px 0; /* Add space between items */
+    }
+
+        .benefits-list li i {
+            font-size: 1.8rem; /* Increase icon size */
+            margin-right: 12px; /* Add a bit more space between icon and text */
+            transition: transform 0.3s ease; /* Smooth transform effect */
+        }
+
+        .benefits-list li:hover i {
+            transform: scale(1.1); /* Slightly enlarge the icon when hovering */
+        }
+
+.register-now {
+    margin-top: 30px;
+}
+
+    .register-now h3 {
+        font-size: 1.5rem;
+        color: #0056b3;
+    }
+
+    .register-now .btn {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        background-color: #FFB703;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .register-now .btn:hover {
+            background-color: #FB8500; /* Darker orange */
+        }
+    .register-now a {
+        margin: 5px;
+        background-color: #FFB703;
+        color: white;
+        border-radius: 5px;
+        padding: 8px 15px;
+        text-decoration: none;
+        font-size: 16px; /* Adjust button text size */
+    }
+        .register-now a:hover {
+            background-color: #FB8500;
+        }
+  /*background*/
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.background-video-element {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    z-index: 1; /* Ensure the content is on top of the video */
+}
+    .container.text-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+.go-back{
+    border: 100px;
+    padding: 5px;
+    margin-top: 10px;
+}
+/* Backdrop */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040 !important; /* Ensure backdrop is behind modal */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    pointer-events: none; /* Allow clicks to pass through to modal */
+}
+
+/* Modal */
+.modal {
+    z-index: 1050 !important; /* Ensure modal is above the backdrop */
+    pointer-events: auto; /* Enable interaction with modal */
+}
+
+/* Modal Dialog */
+.modal-dialog {
+    max-height: 40%;
+    margin: 0 auto; /* Center the modal horizontally */
+    position: relative !important; /* Ensure relative positioning */
+    top: 15%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative !important;
+    z-index: 1055 !important; /* Ensure content is above backdrop */
+    background-color: white; /* Ensure the modal itself is not dimmed */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add a slight shadow for better visibility */
+}
+
+/* Modal Body and Footer */
+.modal-body, .modal-footer {
+    z-index: 1060 !important; /* Ensure the body and buttons stay above backdrop */
+}
+
+    /* Ensure buttons are interactive and look normal on hover */
+    .modal-footer .btn, .modal-header .btn {
+        pointer-events: auto !important; /* Enable button interaction */
+        transition: transform 0.2s ease; /* Smooth hover transition for size */
+    }
+
+        /* Button hover effects */
+        .modal-footer .btn:hover, .modal-header .btn:hover {
+            transform: scale(1.05); /* Slightly grow the button on hover */
+        }
+
+    /* Specific hover effects for delete and cancel buttons */
+
+    /* Delete button (btn-warning) */
+    .modal-footer .btn-warning:hover {
+        background-color: #d39e00; /* Slightly darker yellow for hover */
+        transform: scale(1.05); /* Keep the size effect on hover */
+    }
+
+    /* Cancel button (btn-secondary) */
+    .modal-footer .btn-secondary:hover {
+        background-color: #6c757d; /* Slightly darker grey for hover */
+        transform: scale(1.05); /* Keep the size effect on hover */
+    }

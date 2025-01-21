@@ -1,0 +1,52 @@
+﻿@model CarInsuranceFinal.Models.Schema.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+        <h5 class="text-center mb-4">Add Your Car to the Insurance.</h5>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Create a New Car</h2>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Model" class="form-control" placeholder="Car Model" />
+                        <label asp-for="Model">Car Model</label>
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Year" class="form-control" placeholder="Year" maxlength="4" />
+                        <label asp-for="Year">Year</label>
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="RegistrationNumber" class="form-control" placeholder="Registration Number" />
+                        <label asp-for="RegistrationNumber">Registration Number</label>
+                        <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary w-100 mb-2" />
+                    </div>
+
+                    <!-- Back to List Button -->
+                    <div class="form-group">
+                        <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

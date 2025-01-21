@@ -1,0 +1,45 @@
+﻿@model CarInsuranceFinal.Models.Schema.Car
+
+@{
+    ViewData["Title"] = "Edit Car";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+        <h5 class="text-center mb-4">Update Your Car Details</h5>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Edit Car Information</h2>
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Model" class="form-control" placeholder="Car Model" />
+                        <label asp-for="Model">Car Model</label>
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Year" class="form-control" placeholder="Year" />
+                        <label asp-for="Year">Year</label>
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="RegistrationNumber" class="form-control" placeholder="Registration Number" />
+                        <label asp-for="RegistrationNumber">Registration Number</label>
+                        <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Save Changes</button>
+                    <a asp-controller="Car" asp-action="Index" class="w-100 btn btn-lg btn-secondary border-5 border-white go-back">Go Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

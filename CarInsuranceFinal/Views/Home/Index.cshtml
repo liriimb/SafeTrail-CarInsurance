@@ -1,0 +1,100 @@
+﻿@using CarInsuranceFinal.Models.Schema
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Background Video Section -->
+<div class="background-video">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <!-- Logged In Video -->
+        <video autoplay muted loop class="background-video-element">
+            <source src="~/videos/loggedin.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    }
+    else
+    {
+        <!-- Logged Out Video -->
+        <video autoplay muted loop class="background-video-element">
+            <source src="~/videos/loggedout.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    }
+</div>
+
+<div class="container text-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = UserManager.GetUserAsync(User).Result;
+        var agentRole = User.IsInRole("Agent");
+        var clientRole = User.IsInRole("Client");
+        bool insurancePlan = user.MultiCar;
+
+        <div class="welcome-section">
+            <h1 class="display-4">Welcome Back, @user.FirstName!</h1>
+
+            @if (agentRole)
+            {
+                <h2 class="role-message">You're an Agent!</h2>
+                <p>Ready to review claims or assist clients?</p>
+                <div class="quick-links">
+                    <a class="btn btn-secondary" asp-area="" asp-controller="Review" asp-action="Index"><i class="fa-solid fa-file-shield"></i>  Review Client Claims</a>
+                </div>
+            }
+            else
+            {
+                <h2 class="role-message">You are a valued Client!</h2>
+            }
+
+            @if (insurancePlan == false)
+            {
+                <p class="insurance-status">Seems like you don't have our MultiCar plan..</p>
+            }
+            else
+            {
+                <p class="insurance-status">You are secured with our MultiCar Plan!</p>
+            }
+        </div>
+
+        <div class="quick-links">
+            <h3>Quick Access  <i class="fa-solid fa-forward"></i></h3>
+            <a class="btn btn-secondary" asp-area="" asp-controller="Claim" asp-action="Index"><i class="fa-solid fa-file-lines"></i>  Manage Your Claims</a>
+            <a class="btn btn-secondary" asp-area="" asp-controller="Car" asp-action="Index">Manage Your Cars  <i class="fa-solid fa-car"></i> </a>
+        </div>
+    }
+    else
+    {
+        <div class="guest-section">
+            <h1 class="display-4">Welcome to SafeTrail Insurance</h1>
+            <p>Join thousands of satisfied customers who trust SafeTrail for their car insurance needs.</p>
+
+            <div class="reasons-to-choose">
+                <h2>Why Choose Us?</h2>
+                <ul class="benefits-list">
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-square-check text-success me-2"></i> Multiple Car Insurance Plans
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-square-check text-success me-2"></i> Hassle-Free Claims Handling
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-square-check text-success me-2"></i> 24/7 Customer Support
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-square-check text-success me-2"></i> Affordable Pricing for Families
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="register-now">
+                <h3>Ready to Get Started?</h3><br />
+                <a class="btn btn-warning" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model CarInsuranceFinal.Models.Schema.Car
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Car Details</h2>
+                <dl class="row">
+                    <dt class="col-sm-4">Model</dt>
+                    <dd class="col-sm-8">@Model.Model</dd>
+
+                    <dt class="col-sm-4">Year</dt>
+                    <dd class="col-sm-8">@Model.Year</dd>
+
+                    <dt class="col-sm-4">Registration Number</dt>
+                    <dd class="col-sm-8">@Model.RegistrationNumber</dd>
+                </dl>
+
+                <div class="text-center">
+                    <form asp-action="Details" method="post" asp-route-id="@Model.Id">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

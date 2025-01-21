@@ -1,0 +1,69 @@
+﻿@model ReviewViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Claim Details</h3>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Claim Date:</th>
+                                <td>@Model.Claim.ClaimDate?.ToString("dd MMM yyyy")</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Accident Description:</th>
+                                <td>@Model.Claim.AccidentDescription</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Other Person's Full Name:</th>
+                                <td>@Model.Claim.OtherPersonFullName</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Other Person's Registration Number:</th>
+                                <td>@Model.Claim.OtherPersonRegistrationNumber</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Car:</th>
+                                <td>@Model.Claim.Car?.Model @Model.Claim.Car?.Model (Year: @Model.Claim.Car?.Year)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Claim Status:</th>
+                                <td>@Model.Claim.Status</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @if (Model.Files != null && Model.Files.Any())
+                    {
+                        <h4 class="text-center mb-4">Claim Files</h4>
+                        <ul class="list-group">
+                            @foreach (var file in Model.Files)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @file.FileName
+                                    <a href="/uploads/@file.FileName" download class="btn btn-sm btn-primary">Download</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-center">No files uploaded for this claim.</p>
+                    }
+                    <div class="d-flex justify-content-between mt-4">
+                        <form asp-action="Accept" method="post" asp-route-id="@Model.Claim.Id">
+                            <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-check"></i>  Accept</button>
+                        </form>
+                        <form asp-action="Deny" method="post" asp-route-id="@Model.Claim.Id">
+                            <button type="submit" class="btn btn-warning text-white"><i class="fa-solid fa-ban"></i>  Deny</button>
+                        </form>
+                        <form asp-action="Delete" method="post" asp-route-id="@Model.Claim.Id">
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i>  Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

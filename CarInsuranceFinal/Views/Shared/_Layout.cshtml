@@ -1,0 +1,70 @@
+﻿@using CarInsuranceFinal.Models.Schema
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SafeTrail Insurance</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CarInsuranceFinal.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-royal-blue">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">SafeTrail Insurance  </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light hover-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i>  Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light hover-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-lock"></i>  Privacy</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var user = UserManager.GetUserAsync(User).Result;
+                            var agentRole = User.IsInRole("Agent");
+                            var clientRole = User.IsInRole("Client");
+                            @if (clientRole){
+                            <li class="nav-item">
+                                <a class="nav-link text-light hover-link" asp-area="" asp-controller="Car" asp-action="Index"><i class="fa-solid fa-car"></i>  My Cars</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light hover-link" asp-area="" asp-controller="Claim" asp-action="Index"><i class="fa-solid fa-file-lines"></i>  My Claims</a>
+                            </li>
+                            }
+                            @if (agentRole)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light hover-link" asp-area="" asp-controller="Review" asp-action="Index"><i class="fa-solid fa-file-shield"></i>  Review All Claims</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container flex-grow-1 d-flex flex-column">
+        <main role="main" class="pb-3 flex-grow-1 bg-light-blue">
+            @RenderBody()
+        </main>
+    </div>
+     @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
+     <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
